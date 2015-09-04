@@ -1,10 +1,26 @@
-void setup()
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class Lightning extends PApplet {
+
+public void setup()
 {
   size(700,500);
   background(0);
 }
 
-void draw()
+public void draw()
 {
 	Cloud one = new Cloud(90, 65, 250, 70, 150);
 	Cloud two = new Cloud(350, 70, 250, 85, 100);
@@ -21,7 +37,7 @@ void draw()
 	fade();
 }
 
-void mousePressed()
+public void mousePressed()
 {
 	background(100);
 	lightning();
@@ -38,7 +54,7 @@ class Cloud
 		ch = myH;
 		colour = myC;
 	}
-	void show()
+	public void show()
 	{
 		noStroke();
 		fill(colour);
@@ -50,7 +66,7 @@ class Cloud
 	}
 }
 
-void lightning()
+public void lightning()
 {
 	int startX, startY, endX, endY;
 
@@ -74,8 +90,18 @@ void lightning()
 	}
 }
 
-void fade()
+public void fade()
 {
 	fill(0, 0, 0, 30);
 	rect(0, 0, 700, 500);
+}
+
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "Lightning" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
+  }
 }
